@@ -204,7 +204,7 @@ namespace UnitTests.MarkdownLog
                 new{Name = "Bette Davis", Nominations = 10, Awards=2},
                 new{Name = "Laurence Olivier", Nominations = 10, Awards=1},
                 new{Name = "Spencer Tracy", Nominations = 9, Awards=2}
-                
+
             };
 
             data.ToMarkdownTable().AssertOutputEquals(
@@ -221,7 +221,7 @@ namespace UnitTests.MarkdownLog
         [TestMethod]
         public void TestColumnsCanBeSpecifiedForAutomaticallyBuiltTables()
         {
-            var path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+            var path = Path.GetTempPath();
 
             new DirectoryInfo(path).GetFiles()
                 .ToMarkdownTable(i => i.Name, i => i.Length, i => (int)(DateTime.Now - i.CreationTime).TotalDays)
@@ -257,7 +257,7 @@ namespace UnitTests.MarkdownLog
         public void TestDecimalValuesAreFormattedToTwoDecimalPlaces()
         {
             var squareRoots = Enumerable.Range(0, 12).Select(x => new {X = x*10, Sqrt = Math.Sqrt(x*10)});
-            
+
             squareRoots.ToMarkdownTable().WriteToTrace();
         }
 
@@ -349,7 +349,7 @@ namespace UnitTests.MarkdownLog
             md.Append(simpsons.ToMarkdownTable(TableOptions.ExcludeCollectionProperties));
 
             Console.WriteLine(md);
-            
+
         }
 
     }

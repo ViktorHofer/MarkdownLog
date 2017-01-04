@@ -51,7 +51,7 @@ namespace MarkdownLog
                 case TypeCode.Single:
                     return true;
                 case TypeCode.Object:
-                    if (type.IsGenericType && type.GetGenericTypeDefinition() == typeof(Nullable<>))
+                    if (type.GetTypeInfo().IsGenericType && type.GetGenericTypeDefinition() == typeof(Nullable<>))
                     {
                         return Nullable.GetUnderlyingType(type).IsFloatingPointNumber();
                     }
@@ -79,7 +79,7 @@ namespace MarkdownLog
                 case TypeCode.UInt64:
                     return true;
                 case TypeCode.Object:
-                    if (type.IsGenericType && type.GetGenericTypeDefinition() == typeof(Nullable<>))
+                    if (type.GetTypeInfo().IsGenericType && type.GetGenericTypeDefinition() == typeof(Nullable<>))
                     {
                         return Nullable.GetUnderlyingType(type).IsWholeNumber();
                     }
